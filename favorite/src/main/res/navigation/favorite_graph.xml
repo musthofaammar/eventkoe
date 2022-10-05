@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/favoritePlayersFragment"
+        android:name="id.eureka.eventkoe.favorite.ui.players.FavoritePlayersFragment"
+        android:label="players_fragment"
+        tools:layout="@layout/favorite_players_fragment">
+        <action
+            android:id="@+id/action_playersFragment_to_playerDetailFragment"
+            app:destination="@id/favoritePlayerDetailFragment">
+            <argument
+                android:name="extra_player"
+                app:argType="id.eureka.dotakoe.core.domain.model.ProPlayer" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="id.eureka.eventkoe.favorite.ui.home.FavoriteHomeFragment"
+        android:label="home_fragment"
+        tools:layout="@layout/favorite_home_fragment">
+        <action
+            android:id="@+id/action_homeFragment2_to_playersFragment3"
+            app:destination="@id/favoritePlayersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoritePlayerDetailFragment"
+        android:name="id.eureka.eventkoe.favorite.ui.players.FavoritePlayerDetailFragment"
+        android:label="favorite_player_detail_fragment"
+        tools:layout="@layout/favorite_player_detail_fragment">
+        <argument
+            android:name="extra_player"
+            app:argType="id.eureka.dotakoe.core.domain.model.ProPlayer" />
+    </fragment>
+</navigation>

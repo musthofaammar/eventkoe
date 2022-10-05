@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DotaKoe</string>
+    <string name="players">Players</string>
+    <string name="something_wrong">Oops Something Wrong</string>
+    <string name="title_favorite">Favorite</string>
+    <string name="favorite">Favorite</string>
+</resources>
