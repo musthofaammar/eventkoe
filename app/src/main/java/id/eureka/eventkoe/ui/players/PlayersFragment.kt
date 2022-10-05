@@ -36,7 +36,7 @@ class PlayersFragment : Fragment(R.layout.players_fragment) {
         (activity as AppCompatActivity).supportActionBar?.title = "Players"
         (activity as AppCompatActivity).supportActionBar?.setBackgroundDrawable(
             ColorDrawable(
-                resources.getColor(R.color.purple_500, null)
+                resources.getColor(R.color.purple_500)
             )
         )
         setHasOptionsMenu(false)
