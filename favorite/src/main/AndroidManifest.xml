@@ -15,7 +15,7 @@
 
     <application>
         <activity android:name=".FavoriteActivity"
-            android:exported="true"/>
+            android:exported="false"/>
     </application>
 
 </manifest>
