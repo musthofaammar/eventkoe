@@ -10,6 +10,7 @@ import android.viewbinding.library.fragment.viewBinding
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import id.eureka.dotakoe.core.utils.DateUtils
@@ -40,6 +41,7 @@ class FavoritePlayerDetailFragment : Fragment(R.layout.favorite_player_detail_fr
                 resources.getColor(R.color.blue_whale)
             )
         )
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setHasOptionsMenu(true)
     }
 
@@ -70,6 +72,9 @@ class FavoritePlayerDetailFragment : Fragment(R.layout.favorite_player_detail_fr
                 statusFavorite = !statusFavorite
                 viewModel.setFavorite(args.extraPlayer, statusFavorite)
                 requireActivity().invalidateOptionsMenu()
+            }
+            android.R.id.home -> {
+                findNavController().navigateUp()
             }
         }
         return super.onOptionsItemSelected(item)

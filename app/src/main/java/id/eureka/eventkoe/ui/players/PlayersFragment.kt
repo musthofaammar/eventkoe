@@ -2,11 +2,13 @@ package id.eureka.eventkoe.ui.players
 
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.viewbinding.library.fragment.viewBinding
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import id.eureka.dotakoe.core.data.source.Resource
 import id.eureka.dotakoe.core.ui.PlayersAdapter
@@ -33,12 +35,16 @@ class PlayersFragment : Fragment(R.layout.players_fragment) {
     }
 
     private fun setToolbar() {
-        (activity as AppCompatActivity).supportActionBar?.title = "Players"
-        (activity as AppCompatActivity).supportActionBar?.setBackgroundDrawable(
-            ColorDrawable(
-                resources.getColor(R.color.purple_500)
+
+        with((activity as AppCompatActivity).supportActionBar){
+            this?.title = "Players"
+            this?.setBackgroundDrawable(
+                ColorDrawable(
+                    resources.getColor(R.color.purple_500)
+                )
             )
-        )
+        }
+
         setHasOptionsMenu(false)
     }
 

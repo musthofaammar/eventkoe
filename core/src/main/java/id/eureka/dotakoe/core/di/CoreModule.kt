@@ -7,6 +7,8 @@ import id.eureka.dotakoe.core.data.source.remote.ProPlayerRemoteDataSource
 import id.eureka.dotakoe.core.data.source.remote.network.ApiService
 import id.eureka.dotakoe.core.data.source.repository.ProPlayerRepository
 import id.eureka.dotakoe.core.domain.repository.IProPlayerRepository
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -18,10 +20,16 @@ import java.util.concurrent.TimeUnit
 val databaseModule = module {
     factory { get<DotaDatabase>().proPlayerDao() }
     single {
+
+        val passPhrase : ByteArray = SQLiteDatabase.getBytes("dotakoe".toCharArray())
+        val factory = SupportFactory(passPhrase)
+
         Room.databaseBuilder(
             androidContext(),
             DotaDatabase::class.java, "dota.db"
-        ).fallbackToDestructiveMigration().build()
+        ).fallbackToDestructiveMigration()
+            .openHelperFactory(factory)
+            .build()
     }
 }
 
