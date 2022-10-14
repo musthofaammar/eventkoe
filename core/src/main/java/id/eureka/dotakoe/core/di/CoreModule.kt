@@ -9,6 +9,7 @@ import id.eureka.dotakoe.core.data.source.repository.ProPlayerRepository
 import id.eureka.dotakoe.core.domain.repository.IProPlayerRepository
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SupportFactory
+import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -35,10 +36,18 @@ val databaseModule = module {
 
 val networkModule = module {
     single {
+        val hostName = "api.opendota.com"
+
+        val certificatePinner = CertificatePinner.Builder()
+            .add(hostName, "sha256/dVXrIfaaz0QX0r9s9REFfj7wuV4d4isukZ0svRmh3oY=")
+            .add(hostName, "sha256/FEzVOUp4dF3gI0ZVPRJhFbSJVXR+uQmMH65xhs1glH4=")
+            .build()
+
         OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
+            .certificatePinner(certificatePinner)
             .build()
     }
 
