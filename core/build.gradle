@@ -22,7 +22,11 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+        }
+
+        debug {
+            minifyEnabled true
         }
     }
     compileOptions {
